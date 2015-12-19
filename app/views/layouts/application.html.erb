@@ -19,6 +19,8 @@
           <li><%= link_to 'Home', root_path %></li>
           <% if user_signed_in? %>
             <li><%= link_to 'Secret', secret_path %></li>
+            <li><%= link_to "TAG's", tasks_path %></li>
+            <li><%= link_to "My - TAG's", my_task_path %></li>
           <% end %>
         </ul>
         <ul class="nav navbar-nav pull-right">
