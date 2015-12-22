@@ -13,6 +13,8 @@ class TasksController < ApplicationController
 
   # Task of current_user which have an accepted_by_id
   def my_task_accepted_by_another_user_id # accepted_by_id, how to acquire this?
+    @my_id = current_user.id
+    # @other_user_id = Task.where(user_id: @my_id, accepted_by_id: !empty?)
     @tasks = Task.where(user_id: @my_id, accepted_by_id: @other_user_id) # need to figure other_user_id
   end
 
