@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Tasks</h1>
+<div class="panel-heading"><h2>TAG's</h2></div>
 <%= @my_id %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
@@ -29,10 +29,13 @@
         <!-- <td><%= task.user.email %></td> -->
         <td><%= link_to 'Show', task %></td>
         <!-- removed edit / destroy from un-owners in logic prior to view conditional below -->
-        <% if task.user == current_user %>
+        <!-- decided not to show edit - destroy to anyone on front page, only show page allows edits -->
+        <!-- Might need to add edit to show page -->
+        <!-- <% if task.user == current_user %>
           <td><%= link_to 'Edit', edit_task_path(task) %></td>
-          <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+          <td><%= link_to 'Clear', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %> -->
+
       </tr>
     <% end %>
   </tbody>
