@@ -30,6 +30,7 @@
         <td><%= task.user.name %></td>
         <td><%= task.user_id %></td>
         <td><%= task.task_status %></td>
+        <!-- <td><%= @task_status_options %></td> -->
    <!-- <td><%= task.user.email %></td> -->
         <td><%= link_to 'Show', task %></td>
         <!-- Removing edit option from full listings, edit inside each show -->
@@ -37,10 +38,11 @@
         <td><%= link_to 'Clear', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+
   </tbody>
 
 </table></div>
-
+<%= @my_task_status_options %> <!-- list all status options -->
 <br>
 
 <%= link_to 'New Task', new_task_path %>

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="panel-heading"><h2>TAG's</h2></div>
-<%= @my_id %>
+<!-- <%#= @my_id %> dono what this was doing.. delete in 2 days-->
 <div class="panel panel-info">
 <table class="table">
   <thead>
@@ -16,6 +16,12 @@
       <th colspan="1"></th>
     </tr>
   </thead>
+
+<!-- debugging -->
+<% if user_signed_in? %>
+Current User Id : <%= current_user.id %>
+<% end %>
+<!-- debug -->
 
   <tbody>
     <% @tasks.each do |task| %>

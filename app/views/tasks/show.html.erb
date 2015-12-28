@@ -38,11 +38,6 @@
   <strong>Status: </strong>
   <%= @task.task_status %>
 </p>
-<!-- Don't think this should be user defined, it should tie into the current_user / session -->
-<!-- <p>
-  <strong>User:</strong>
-  <%= @task.user_id %>
-</p> -->
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
