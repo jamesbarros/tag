@@ -25,6 +25,14 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+      @my_id = current_user.id
+
+      # task.update( {:accepted_by_user_id => current_user.id}, {:task_status => "processing"} )
+
+      # This is in show page.. I don't know if I want a link there with parameters or
+      # a boolean value that hits an end point here which would update the db which is safer?
+      #
+      #link_to("TAG", task_path(@task, :accepted_by_user_id => current_user.id), :method => :put, :confirm => "Accept this TAG? ")
   end
 
   # GET /tasks/new
@@ -102,9 +110,6 @@ class TasksController < ApplicationController
   def my_task
     @my_id = current_user.id # may be redundant but will head towards service objects
     @tasks = Task.where(user_id: @my_id)
-    # @tasks = Task.where(user_id: current_user.id) # works fine above is alternative
-    # set this in current_user_is_task_user_id private method
-    # @my_task_status_options = {available: "available", finished: "finished", complete: "complete", unavailable: "unavailable", processing: "processing"}
   end
 
 
@@ -120,7 +125,6 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id]) # OG
-      # @task  = Task.where(current_user.id: @task.user_id) # didnt check mostly breaks I bets
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
