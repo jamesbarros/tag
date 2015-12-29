@@ -18,7 +18,20 @@ class TasksController < ApplicationController
     else
       # All Available task including my tasks : user_signed_in?(false) => index display
       @tasks = Task.where(task_status: "available")
-      # Link clickable to accept Task logic goes here
+    end
+  end
+
+  # action for : Link-clickable to accept Task logic
+  def accept_available_task
+    # This action may be held within the show page and provide a link there
+    @task = Task.find(params[:id])
+    @my_id = current_user.id # enough of these, think to make a set_task params out of this
+      # Check that the Task is not owned or currently accepted by current_user
+    if @task.accepted_by_user_id != @my_id  &&  @task.user_id != @my_id
+      @task.update( { accepted_by_user_id: @my_id, task_status: "processing" } )
+      redirect_to @task, notice: "TAG Accepted" # responding html, includ JSON later
+    else
+      redirect_to task_path, notice: 'TAG not accepted, try again later'
     end
   end
 
@@ -38,7 +51,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = current_user.tasks.build # Task.new
-    @my_task_status_options = {available: "available", unlist: "unlisted"}
+    @my_task_status_options = { available: "available", unlist: "unlisted" }
   end
 
   # GET /tasks/1/edit
