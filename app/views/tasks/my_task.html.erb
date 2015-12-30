@@ -15,7 +15,7 @@
       <th>User</th>
       <th>ID</th>
       <th>Status</th>
-      <th colspan="2"></th>
+      <!-- <th colspan="3"></th> -->
     </tr>
   </thead>
 
@@ -30,21 +30,18 @@
         <td><%= task.user.name %></td>
         <td><%= task.user_id %></td>
         <td><%= task.task_status %></td>
+        <td><%= link_to 'Show', task %></td>
 
         <% if task.task_status == "Finished" %>
-            <td><%= link_to 'Show', task %></td>
             <td><%= link_to "Complete TAG˚", complete_task_path([:id] => task[:id]), method: :patch, data: { confirm: "TAG to be marked Completed and Payment submitted?" }%></td>
-        <% else %>
-          <td><%= link_to 'Show', task %></td>
-          <td><%= link_to 'Clear', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% elsif task.task_status == "Available" || task.task_status == "Unlisted"  %>
+            <td><%= link_to 'Clear', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
+
       </tr>
     <% end %>
-
   </tbody>
-
 </table></div>
-<%= @my_task_status_options %> <!-- list all status options -->
 <br>
-
 <%= link_to 'New Task', new_task_path %>
+<hr>

@@ -13,10 +13,10 @@ class TasksController < ApplicationController
       # All Available task not current_user & checks for accepted_by_user_id == 0
       # query worked only after setting accepted_by_user_id to = 0 from nil
       # Set default field of accepted_by_user_id to 0 within task.rb via after_initialize
-      @tasks = Task.where("user_id != ? AND task_status = ? AND accepted_by_user_id = ?", @my_id, "available", 0)
+      @tasks = Task.where("user_id != ? AND task_status = ? AND accepted_by_user_id = ?", @my_id, "Available", 0)
     else
       # All Available task including my tasks : user_signed_in?(false) => index display
-      @tasks = Task.where(task_status: "available")
+      @tasks = Task.where(task_status: "Available")
     end
   end
 
@@ -36,6 +36,10 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
       @task = Task.find(params[:id])
+
+      if @task.task_status == "Completed" || @task.task_status == "Finished"
+        @my_task_status_options = {finished: "Finished", processing: "Processing", complete: "Completed",} #, data: { confirm: "Return Tag to Processing ?"}
+      end
   end
 
   # POST /tasks
