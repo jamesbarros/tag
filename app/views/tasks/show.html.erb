@@ -42,5 +42,7 @@
 <!-- link_to("TAG", task_path(@task, :accepted_by_user_id => current_user.id), :method => :put, :confirm => "Accept this TAG? ") -->
 <% if @task.user_id == current_user.id %>
   <%= link_to 'Edit', edit_task_path(@task) %> |
+  <%= link_to 'Back', my_task_path %>
+<% else %>
+  <%= link_to 'Back', my_accepted_task_path %>
 <% end %>
-  <%= link_to 'Back', tasks_path %>

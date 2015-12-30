@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = current_user.tasks.build # Task.new
-    @my_task_status_options = { available: "available", unlist: "unlisted" }
+    @my_task_status_options = { available: "Available", unlist: "Unlisted" }
   end
 
   # GET /tasks/1/edit
@@ -87,34 +87,40 @@ class TasksController < ApplicationController
     @my_id = current_user.id # enough of these, think to make a set_task params out of this
       # Check that the Task is not owned or currently accepted by current_user
     if @tasks.accepted_by_user_id != @my_id  &&  @tasks.user_id != @my_id
-      @tasks.update( { accepted_by_user_id: @my_id, task_status: "processing" } )
-      redirect_to @tasks_path, notice: "TAG Accepted" # responding html, includ JSON later
+      @tasks.update( { accepted_by_user_id: @my_id, task_status: "Processing" } )
+      redirect_to my_accepted_task_path, notice: "TAG Accepted" # responding html, includ JSON later
     else
-      redirect_to @tasks_path, notice: 'TAG not accepted, try again later'
+      redirect_to my_accepted_task_path, notice: 'TAG not accepted, try again later'
     end # added @ to tasks_path prior to getting my_accepted_task page working
   end
 
 
-  def finished_task # mark_accepted_tag_as_finished
+  def finished_task # mark_accepted_tag_as_finished_by_accepted_User_id
     @tasks = Task.find(params[:id])
     @my_id = current_user.id # redundant_5
       # Check that the Task is not owned or currently accepted by current_user
     if @tasks.accepted_by_user_id == @my_id  &&  @tasks.user_id != @my_id # last conditional, why?
       @tasks.update( { task_status: "Finished" } )
-      redirect_to my_task_path, notice: "TAG Marked as Finished, Owner will Review prior to Payment"
+      redirect_to my_accepted_task_path, notice: "TAG Marked as Finished, Owner will Review prior to Payment"
       # responding html, includ JSON later
     else
-      redirect_to my_task_path, notice: 'TAG not marked as Finished, please try again later'
+      redirect_to my_task_path, notice: 'TAG not marked as Finished, Please try again later'
     end # added @ to tasks_path prior to getting my_accepted_task page working
   end
 
-
-  # Task of current_user which have an accepted_by_id
-  def my_task_accepted_by_another_user_id # accepted_by_id, != nil
-    @my_id = current_user.id
-    # @other_user_id = Task.where(user_id: @my_id, accepted_by_id: != nil) # !empty?) # preset to nil
-    @tasks = Task.where(user_id: @my_id, accepted_by_id: any?) # if !empty? doens't work != nil may
-    # @tasks = Task.where(user_id: !current_user, accepted_by_user_id: nil, task_status: "available")
+  # set TAG as complete and to Pay accepted_by_user_id by task_user_id
+  def complete_task # mark_finished_tag_as_complete_by_Owner
+    @tasks = Task.find(params[:id])
+    @my_id = current_user.id # redundant_6
+      # Check that the Task is not owned or currently accepted by current_user
+    if @tasks.accepted_by_user_id != @my_id  &&  @tasks.user_id == @my_id #
+      @tasks.update( { task_status: "Completed" } )
+      redirect_to my_task_path, notice: "Confirm, TAG Completed :: ˚Sending Payment˚"
+      # payment sent will initiate Stripe payment system
+      # responding html, includ JSON later
+    else
+      redirect_to my_task_path, notice: 'TAG not marked as Completed, Please try again later'
+    end # added @ to tasks_path prior to getting my_accepted_task page working
   end
 
   # TAG's accepted_by_current_user # <- old name
@@ -123,8 +129,9 @@ class TasksController < ApplicationController
     @tasks = Task.where(accepted_by_user_id: @my_id)
     # We may wish to only list task we are working on and with status processing, and nothing more
     #@tasks = Task.where("user_id != ? AND task_status = ? AND accepted_by_user_id = ?", @my_id, "available", 0)
-    @other_user_task_status_options = {finished: "finished", processing: "processing", error_in_tag: "errors in TAG", Return_Tag: "Please_remove_me"}
+    @other_user_task_status_options = {finished: "Finished", processing: "Processing", error_in_tag: "Errors in TAG", Return_Tag: "Please_Remove_Me"}
   end
+
 
   # Task of current_user Linked as My-TAG's in application.html.erb
   def my_task
@@ -133,10 +140,17 @@ class TasksController < ApplicationController
   end
 
 
+  # TODO : in version 2 : Task of current_user which have been accepted with accepted_by_id defined
+  def my_task_accepted_by_another_user_id # accepted_by_id, != nil
+    @my_id = current_user.id
+    @tasks = Task.where(user_id: @my_id, accepted_by_id: any?) # if !empty? doens't work != nil may
+  end
+
+
   private
   # current_user must validate as task_user_id to Edit / Update / Delete
     def current_user_is_task_user_id
-       @my_task_status_options = {available: "available", complete: "Complete 'n Pay", unlist: "unlisted", processing: "processing"} # this transfers over to _form via edit call
+       @my_task_status_options = {available: "Available", complete: "Completed", unlist: "Unlisted", processing: "Processing"} # this transfers over to _form via edit call
       if current_user.id != @task.user_id
         redirect_to tasks_path
       end
