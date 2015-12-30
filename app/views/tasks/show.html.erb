@@ -40,6 +40,7 @@
 </p>
 
 <!-- link_to("TAG", task_path(@task, :accepted_by_user_id => current_user.id), :method => :put, :confirm => "Accept this TAG? ") -->
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<% if @task.user_id == current_user.id %>
+  <%= link_to 'Edit', edit_task_path(@task) %> |
+<% end %>
+  <%= link_to 'Back', tasks_path %>
