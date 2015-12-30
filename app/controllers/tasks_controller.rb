@@ -5,15 +5,14 @@ class TasksController < ApplicationController
 
   # GET /tasks
   # GET /tasks.json
-  def index
+  def index # all available task
     @task_check = Task.all
-    # need to list only Task that is not current_user
+    # need to list only Tasks that is not owned by current_user
     if user_signed_in?
       @my_id = current_user.id
-
       # All Available task not current_user & checks for accepted_by_user_id == 0
-      # This works to show all available task not of current user that's available to accept
-      # worked only after setting accepted_by_user_id to = 0 on init via after_initialize task.rb
+      # query worked only after setting accepted_by_user_id to = 0 from nil
+      # Set default field of accepted_by_user_id to 0 within task.rb via after_initialize
       @tasks = Task.where("user_id != ? AND task_status = ? AND accepted_by_user_id = ?", @my_id, "available", 0)
     else
       # All Available task including my tasks : user_signed_in?(false) => index display
@@ -21,31 +20,11 @@ class TasksController < ApplicationController
     end
   end
 
-  # action for : Link-clickable to accept Task logic
-  def accept_available_task
-    # This action may be held within the show page and provide a link there
-    @task = Task.find(params[:id])
-    @my_id = current_user.id # enough of these, think to make a set_task params out of this
-      # Check that the Task is not owned or currently accepted by current_user
-    if @task.accepted_by_user_id != @my_id  &&  @task.user_id != @my_id
-      @task.update( { accepted_by_user_id: @my_id, task_status: "processing" } )
-      redirect_to @task, notice: "TAG Accepted" # responding html, includ JSON later
-    else
-      redirect_to task_path, notice: 'TAG not accepted, try again later'
-    end
-  end
-
   # GET /tasks/1
   # GET /tasks/1.json
   def show
       @my_id = current_user.id
-
-      # task.update( {:accepted_by_user_id => current_user.id}, {:task_status => "processing"} )
-
-      # This is in show page.. I don't know if I want a link there with parameters or
-      # a boolean value that hits an end point here which would update the db which is safer?
-      #
-      #link_to("TAG", task_path(@task, :accepted_by_user_id => current_user.id), :method => :put, :confirm => "Accept this TAG? ")
+      # accept_available_task logic may move into show pages
   end
 
   # GET /tasks/new
@@ -103,6 +82,17 @@ class TasksController < ApplicationController
   end
 
 
+  def accept_available_task # logic behind index's accept Tag link
+    @tasks = Task.find(params[:id])
+    @my_id = current_user.id # enough of these, think to make a set_task params out of this
+      # Check that the Task is not owned or currently accepted by current_user
+    if @tasks.accepted_by_user_id != @my_id  &&  @tasks.user_id != @my_id
+      @tasks.update( { accepted_by_user_id: @my_id, task_status: "processing" } )
+      redirect_to @tasks_path, notice: "TAG Accepted" # responding html, includ JSON later
+    else
+      redirect_to @tasks_path, notice: 'TAG not accepted, try again later'
+    end # added @ to tasks_path prior to getting my_accepted_task page working
+  end
 
   # Task of current_user which have an accepted_by_id
   def my_task_accepted_by_another_user_id # accepted_by_id, != nil
@@ -112,16 +102,16 @@ class TasksController < ApplicationController
     # @tasks = Task.where(user_id: !current_user, accepted_by_user_id: nil, task_status: "available")
   end
 
-  # Task accepted_by_current_user of other_user_id
-  def other_user_task_accepted_by_current_user
-    @my_id = current_user.id # redundant?
-    @task = Task.where(accepted_by_id: @my_id)
+  # TAG's accepted_by_current_user # <- old name
+  def my_accepted_task
+    @my_id = current_user.id # redundant 3
+    @tasks = Task.where(accepted_by_user_id: @my_id)
     @other_user_task_status_options = {finished: "finished", processing: "processing", error_in_tag: "errors in TAG", Return_Tag: "Please_remove_me"}
   end
 
   # Task of current_user Linked as My-TAG's in application.html.erb
   def my_task
-    @my_id = current_user.id # may be redundant but will head towards service objects
+    @my_id = current_user.id # may be redundant4 but will head towards service objects
     @tasks = Task.where(user_id: @my_id)
   end
 

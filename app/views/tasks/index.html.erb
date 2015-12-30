@@ -33,24 +33,8 @@ Current User Id : <%= current_user.id %>
         <td><%= task.location %></td>
         <td><%= task.user.name %></td>
         <td><%= task.task_status %></td>
-        <td><%= link_to 'TAG?', task %></td>
-        <td><%= link_to "TAG ac?", accept_available_task_path([:id] => task[:id]), method: :patch%></td>
-<!-- Below works with the confirm, above removing for development -->
-        <!-- <td><%#= link_to "TAG ac?", accept_available_task_path([:id] => task[:id]), method: :patch, data: { confirm: "Accept this TAG ?" } %></td> -->
-
-
-        <!-- <td><%#= link_to "TAG ac?", accept_available_task_path(task[:id]), method: :patch, :confirm => "Accept this TAG ?" %></td> -->
-        <!-- <%#= debug params %> -->
-<!-- @testme -->
-<!-- :id => user.id -->
-        <!-- removed edit / destroy from un-owners in logic prior to view conditional below -->
-        <!-- decided not to show edit - destroy to anyone on front page, only show page allows edits -->
-        <!-- Might need to add edit to show page -->
-        <!-- <% if task.user == current_user %>
-          <td><%= link_to 'Edit', edit_task_path(task) %></td>
-          <td><%= link_to 'Clear', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %> -->
-
+        <!-- <td><%#= link_to 'TAG?', tasks %></td> -->
+        <td><%= link_to "TAG˚", accept_available_task_path([:id] => task[:id]), method: :patch, data: { confirm: "Accept this TAG ?" }%></td>
       </tr>
     <% end %>
   </tbody>
