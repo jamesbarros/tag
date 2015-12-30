@@ -136,7 +136,7 @@ class TasksController < ApplicationController
   private
   # current_user must validate as task_user_id to Edit / Update / Delete
     def current_user_is_task_user_id
-       @my_task_status_options = {available: "available", finished: "Finished '4 Review'", complete: "Complete 'n Pay'", unlist: "unlisted", processing: "processing"} # this transfers over to _form via edit call
+       @my_task_status_options = {available: "available", complete: "Complete 'n Pay", unlist: "unlisted", processing: "processing"} # this transfers over to _form via edit call
       if current_user.id != @task.user_id
         redirect_to tasks_path
       end
