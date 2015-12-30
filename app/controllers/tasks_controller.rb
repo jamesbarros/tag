@@ -94,6 +94,21 @@ class TasksController < ApplicationController
     end # added @ to tasks_path prior to getting my_accepted_task page working
   end
 
+
+  def finished_task # mark_accepted_tag_as_finished
+    @tasks = Task.find(params[:id])
+    @my_id = current_user.id # redundant_5
+      # Check that the Task is not owned or currently accepted by current_user
+    if @tasks.accepted_by_user_id == @my_id  &&  @tasks.user_id != @my_id # last conditional, why?
+      @tasks.update( { task_status: "Finished" } )
+      redirect_to my_task_path, notice: "TAG Marked as Finished, Owner will Review prior to Payment"
+      # responding html, includ JSON later
+    else
+      redirect_to my_task_path, notice: 'TAG not marked as Finished, please try again later'
+    end # added @ to tasks_path prior to getting my_accepted_task page working
+  end
+
+
   # Task of current_user which have an accepted_by_id
   def my_task_accepted_by_another_user_id # accepted_by_id, != nil
     @my_id = current_user.id
@@ -106,6 +121,8 @@ class TasksController < ApplicationController
   def my_accepted_task
     @my_id = current_user.id # redundant 3
     @tasks = Task.where(accepted_by_user_id: @my_id)
+    # We may wish to only list task we are working on and with status processing, and nothing more
+    #@tasks = Task.where("user_id != ? AND task_status = ? AND accepted_by_user_id = ?", @my_id, "available", 0)
     @other_user_task_status_options = {finished: "finished", processing: "processing", error_in_tag: "errors in TAG", Return_Tag: "Please_remove_me"}
   end
 
