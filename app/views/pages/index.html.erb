@@ -1,20 +1,3 @@
 <% content_for :top_content do %>
-  <div class="jumbotron">
-    <div class="container">
-
-      <% if user_signed_in? %>
-            <h3>Welcome! <%= current_user.name %></h3>
-            <p>Setup your <%= link_to 'profile', edit_user_registration_path%> or visit a <%= link_to 'secret', secret_path%> page</p>
-            <!-- <p>
-              <%= link_to 'My Profile', edit_user_registration_path, class: 'btn btn-primary btn-sm' %>
-            | <%= link_to 'Secret', secret_path, class: 'btn btn-primary btn-sm' %></p> -->
-            <% else %>
-            <h3>Welcome!</h3>
-            <p>Register to get started.</p>
-            <p>
-              <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
-            </p>
-            <% end %>
-    </div>
-  </div>
+ 
 <% end %>
