@@ -11,6 +11,17 @@ class Task < ActiveRecord::Base
   # Rails 4 Way pg 279, paragraph prior to code example
   # This was failing due to task_status not within white-listed strong params in task_controller
 
+### Geocoder by alex reisner
+  # Geocode by Object
+  geocoded_by :location,
+  :latitude => :lat, :longitude => :lon
+  after_validation :geocode
+  ## Example of geocoding only on changes or updates to keep db and lookup to a minimum
+  # after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }
+
+  # Reverse Geocode - Not expected, but example below
+  # reverse_geocoded_by :latitude => :lat, :longitude => :lon
+  # after_validation :reverse_geocode # auto grab addresses
 
 
 
