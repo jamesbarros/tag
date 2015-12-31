@@ -13,6 +13,7 @@ class TasksController < ApplicationController
       # All Available task not current_user & checks for accepted_by_user_id == 0
       # query worked only after setting accepted_by_user_id to = 0 from nil
       # Set default field of accepted_by_user_id to 0 within task.rb via after_initialize
+      # @tasks = Task.where("user_id != ? AND task_status = ? AND accepted_by_user_id = ?", @my_id, "Available", 0)
       @tasks = Task.where("user_id != ? AND task_status = ? AND accepted_by_user_id = ?", @my_id, "Available", 0)
     else
       # All Available task including my tasks : user_signed_in?(false) => index display
@@ -29,17 +30,26 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = current_user.tasks.build # Task.new
     @my_task_status_options = { available: "Available", unlist: "Unlisted" }
+    @task = current_user.tasks.build # Task.new
+
   end
 
   # GET /tasks/1/edit
   def edit
       @task = Task.find(params[:id])
 
+      # Conditions to overide @my_task_status_options established via before_action :edit above
       if @task.task_status == "Completed" || @task.task_status == "Finished"
-        @my_task_status_options = {finished: "Finished", processing: "Processing", complete: "Completed",} #, data: { confirm: "Return Tag to Processing ?"}
+        @my_task_status_options = {finished: "Finished", processing: "Processing", complete: "Completed",}
       end
+
+      if @task.task_status == "Processing"
+        @my_task_status_options = {processing: "Processing", complete: "Completed",}
+      end
+
+
+
   end
 
   # POST /tasks
@@ -117,14 +127,14 @@ class TasksController < ApplicationController
     @tasks = Task.find(params[:id])
     @my_id = current_user.id # redundant_6
       # Check that the Task is not owned or currently accepted by current_user
-    if @tasks.accepted_by_user_id != @my_id  &&  @tasks.user_id == @my_id #
-      @tasks.update( { task_status: "Completed" } )
+    if @tasks.accepted_by_user_id != @my_id  &&  @tasks.user_id == @my_id
+      @tasks.update({ task_status: "Completed" })
       redirect_to my_task_path, notice: "Confirm, TAG Completed :: ˚Sending Payment˚"
       # payment sent will initiate Stripe payment system
       # responding html, includ JSON later
     else
       redirect_to my_task_path, notice: 'TAG not marked as Completed, Please try again later'
-    end # added @ to tasks_path prior to getting my_accepted_task page working
+    end
   end
 
   # TAG's accepted_by_current_user # <- old name
@@ -154,7 +164,8 @@ class TasksController < ApplicationController
   private
   # current_user must validate as task_user_id to Edit / Update / Delete
     def current_user_is_task_user_id
-       @my_task_status_options = {available: "Available", complete: "Completed", unlist: "Unlisted", processing: "Processing"} # this transfers over to _form via edit call
+      # set status options, removing processing & completed, may add for stripe integration test
+       @my_task_status_options = {available: "Available", unlist: "Unlisted"} # this transfers over to _form via edit call
       if current_user.id != @task.user_id
         redirect_to tasks_path
       end
@@ -167,6 +178,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :date, :price, :detail, :location, :task_status, :accepted_by_user_id)
+      params.require(:task).permit(:title, :date, :price, :detail, :location, :task_status, :accepted_by_user_id => 0)
     end
 end

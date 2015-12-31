@@ -12,11 +12,8 @@
       <th>Price</th>
       <th>Detail</th>
       <th>Location</th>
-      <!-- <th>User</th>
-      <th>ID</th> -->
       <th>Status</th>
-      <th> Info </th>
-      <th colspan="3">&nbsp;</th>
+      <th colspan="0">&nbsp;</th>
     </tr>
   </thead>
 
@@ -28,17 +25,17 @@
         <td><%= task.price %></td>
         <td><%= task.detail %></td>
         <td><%= task.location %></td>
-        <!-- <td><%= task.user.name %></td>
-        <td><%= task.user_id %></td> -->
         <td><%= task.task_status %></td>
-        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Info', task %></td>
 
         <% if task.task_status == "Finished" %>
-            <td><%= link_to "TAG˚", complete_task_path([:id] => task[:id]), method: :patch, data: { confirm: "TAG to be marked Completed and Payment submitted?" }%></td>
+            <td><center><%= link_to "TAG˚ Complete", complete_task_path([:id] => task[:id]), method: :patch, data: { confirm: "TAG to be marked Completed and Payment submitted?" }%></center></td>
+<!-- <td>&nbsp;</td> -->
         <% elsif task.task_status == "Available" || task.task_status == "Unlisted"  %>
-            <td><%= link_to 'X', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><center><%= link_to 'X', task, method: :delete, data: { confirm: 'OK to Remove TAG ?' } %></center></td>
+<!-- <td>&nbsp;</td> -->
         <% end %>
-
+        <!-- <td>&nbsp;</td> -->
       </tr>
     <% end %>
   </tbody>

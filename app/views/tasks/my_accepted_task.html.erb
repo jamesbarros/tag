@@ -12,10 +12,9 @@
       <th>Price</th>
       <th>Detail</th>
       <th>Location</th>
-      <th>User</th>
+      <th>Owner</th>
       <th>Status</th>
-      <th>Info</th>
-      <!-- <th colspan="2"></th> -->
+      <th colspan="0"></th>
     </tr>
   </thead>
 
@@ -28,14 +27,12 @@
         <td><%= task.detail %></td>
         <td><%= task.location %></td>
         <td><%= task.user.name %></td>
-        <!-- <td><%= task.user_id %></td> -->
         <td><%= task.task_status %></td>
-        <td><%= link_to 'Show', task %></td>
-
-        <% if task.task_status != "Finished" %>
-          <% if task.task_status != "Completed" %>
-            <td><%= link_to "TAG˚ Finished", finished_task_path([:id] => task[:id]), method: :patch, data: { confirm: "TAG Finished for Review ?" }%></td>
-          <% end %>
+        <td><%= link_to 'Info', task %></td>
+          <% if task.task_status != "Finished" %>
+            <% if task.task_status != "Completed" %>
+              <td><center><%= link_to "TAG˚ Finished", finished_task_path([:id] => task[:id]), method: :patch, data: { confirm: "TAG Finished for Review ?" }%></center></td>
+            <% end %>
         <% end %>
 
 
