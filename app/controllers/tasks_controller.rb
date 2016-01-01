@@ -178,6 +178,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :date, :price, :detail, :location, :task_status, :accepted_by_user_id => 0)
+      params.require(:task).permit(:title, :date, :price, :detail, :location, :task_status, :accepted_by_user_id => 0) # note, potential redundancy after_initialize in Task.rb
     end
 end
