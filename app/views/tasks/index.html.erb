@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <div class="panel-heading"><h2>TAG's</h2></div>
-<!-- <%#= @my_id %> dono what this was doing.. delete in 2 days-->
 <div class="panel panel-info">
 <table class="table">
   <thead>
@@ -11,7 +10,6 @@
       <th>Price</th>
       <th>Detail</th>
       <th>Location</th>
-      <!-- <th>Owner</th> -->
       <th>Status</th>
       <th colspan="1">&nbsp;</th>
     </tr>
@@ -25,7 +23,6 @@
         <td><%= task.price %></td>
         <td><%= task.detail %></td>
         <td><%= task.location %></td>
-        <!-- <td><%= task.user.name %></td> -->
         <td><%= task.task_status %></td>
         <td><%= link_to "TAG˚", accept_available_task_path([:id] => task[:id]), method: :patch, data: { confirm: "Accept this TAG ?" }%></td>
       </tr>
@@ -33,8 +30,62 @@
   </tbody>
 </table>
 </div>
-
 <br>
-
-<%= link_to 'New Task', new_task_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Task', new_task_path %>
+<% end %>
 <hr>
+
+<!-- Start Google Map  -->
+<div id="map"></div>
+<script>
+function initialize() {
+
+    var tasks = [<%= raw @tasks.to_json %>][0]; // enclosing elements?
+
+    window.map = new google.maps.Map(document.getElementById('map'), {
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        zoom: 11
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+    var bounds = new google.maps.LatLngBounds();
+
+    for (i = 0; i < tasks.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(tasks[i].lat, tasks[i].lon),
+            title: tasks[i].title,
+            map: map
+        });
+
+        bounds.extend(marker.position);
+  // Is this the click response..should all markers already list info so the click goes to info page?
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+                  //  var tag = tasks[i].price; // rig the varrible object for setContent
+                  //  tag = tasks[i].title;
+                  //  var tag = tasks[i].title + "  " + tasks[i].price;
+                  // var tag = (`<strong>${tasks[i].title}</strong> | ${tasks[i].price}`);
+                  // var tag = (`<a href="/tasks/${tasks[i].id}">${tasks[i].title}</a> | ${tasks[i].price}`); // let price be asked for go for tag on filterd results for now
+              // step prior to filtered results and TAG˚ link added
+                var tag = (`<a href="/tasks/${tasks[i].id}">${tasks[i].title}</a> | ${tasks[i].price}`);
+                infowindow.setContent(tag);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+
+    map.fitBounds(bounds);
+}
+
+function loadScript() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' + 'callback=initialize';
+    document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+</script>
+<!-- Stop Google Map  -->
+<br><hr><hr>
