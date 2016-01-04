@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   resources :tasks
   devise_for :users, :controllers => { omniauth_callbacks: 'callbacks', registrations: 'registrations' }
-  root to: 'pages#index'
+  # root to: 'pages#index'
+  root to: 'tasks#index'
 
   patch '/accept_available_task', to: 'tasks#accept_available_task', as: :accept_available_task
   patch '/finished_task', to: 'tasks#finished_task', as: :finished_task

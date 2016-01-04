@@ -2,14 +2,17 @@
 
   <div class="container">
       <%= link_to 'TAG', root_path, class: 'navbar-brand' %>
+      <!-- <%= link_to 'TAG', tasks_path, class: 'navbar-brand' %> -->
 
     <div id="navbar">
 
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
-        <!-- links go here as follows.
-          <li><%= link_to 'Secret', secret_path %></li>
-        -->
+        <!-- links go here as follows. -->
+            <!-- <li><%= link_to "TAG's", tasks_path %></li> -->
+            <li><%= link_to "My - TAG's", my_task_path %></li>
+            <li><%= link_to "Accepted - TAG's", my_accepted_task_path %></li>
+        <!-- <li><%= link_to 'Secret', secret_path %></li> -->
         <% end %>
       </ul>
 

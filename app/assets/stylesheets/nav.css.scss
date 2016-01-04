@@ -1,11 +1,16 @@
 $bgDefault      : #6f2452;
-$bgHighlight    : #6f2452;
-$colDefault     : #818181;
-$colHighlight   : #fffefe;
+$bgHighlight    : #7d3963;
+$colDefault     : #d3bdcb;
+$colHighlight   : #a87b97;
+// defaults from intial_skin merge below
+// Adjusted colors based off bgDefault
+// $bgHighlight    : #6f2452;
+// $colDefault     : #818181;
+// $colHighlight   : #fffefe;
 $dropDown       : false;
 .navbar-default {
   background-color: $bgDefault;
-  background-image: none; 
+  background-image: none;
   border-color: $bgHighlight;
   .navbar-brand {
     color: $colDefault;
