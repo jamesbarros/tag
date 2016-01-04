@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+<div class="panel-heading"><h2>Accepted TAG's</h2></div>
+
+<!-- the little lined box around everythine info, success, warning are alternatives -->
+<div class="panel panel-info">
+  <!-- This above lines defined, below a simple table class to clean it up -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Price</th>
+      <th>Detail</th>
+      <th>Location</th>
+      <th>Owner</th>
+      <th>Status</th>
+      <th colspan="0"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.date %></td>
+        <td><%= task.price %></td>
+        <td><%= task.detail %></td>
+        <td><%= task.location %></td>
+        <td><%= task.user.name %></td>
+        <td><%= task.task_status %></td>
+        <td><%= link_to 'Info', task %></td>
+          <% if task.task_status != "Finished" %>
+            <% if task.task_status != "Completed" %>
+              <td><center><%= link_to "TAG˚ Finished", finished_task_path([:id] => task[:id]), method: :patch, data: { confirm: "TAG Finished for Review ?" }%></center></td>
+            <% end %>
+        <% end %>
+
+
+      </tr>
+    <% end %>
+
+  </tbody>
+
+</table></div>
+<br>

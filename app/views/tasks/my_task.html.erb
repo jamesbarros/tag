@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+<div class="panel-heading"><h2>My TAG's</h2></div>
+
+<!-- the little lined box around everythine info, success, warning are alternatives -->
+<div class="panel panel-info">
+  <!-- This above lines defined, below a simple table class to clean it up -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Price</th>
+      <th>Detail</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th colspan="0">&nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.date %></td>
+        <td><%= task.price %></td>
+        <td><%= task.detail %></td>
+        <td><%= task.location %></td>
+        <td><%= task.task_status %></td>
+        <td><%= link_to 'Info', task %></td>
+
+        <% if task.task_status == "Finished" %>
+            <td><center><%= link_to "TAG˚ Complete", complete_task_path([:id] => task[:id]), method: :patch, data: { confirm: "TAG to be marked Completed and Payment submitted?" }%></center></td>
+<!-- <td>&nbsp;</td> -->
+        <% elsif task.task_status == "Available" || task.task_status == "Unlisted"  %>
+            <td><center><%= link_to 'X', task, method: :delete, data: { confirm: 'OK to Remove TAG ?' } %></center></td>
+<!-- <td>&nbsp;</td> -->
+        <% end %>
+        <!-- <td>&nbsp;</td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table></div>
+<br>
+<%= link_to 'New Task', new_task_path %>
+<hr>

@@ -24,6 +24,16 @@
   @extend .alert-info;
 }
 
+
 body {
         background-image: url(bg1.jpg);
 }
+
+
+// google-map window details, required to render map in div
+#map {
+    width: 640px;
+    height: 480px;
+    border: .5px solid navy;
+    margin: 0 auto; // center
+  }

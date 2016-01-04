@@ -6,6 +6,7 @@ gem 'jquery-turbolinks'
 gem 'delayed_job_active_record'
 gem 'omniauth-facebook'
 gem 'rails_12factor', group: :production
+gem 'geocoder'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'

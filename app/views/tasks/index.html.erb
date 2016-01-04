@@ -1,0 +1,88 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel-heading"><h2>TAG's</h2></div>
+<div class="panel panel-info">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Price</th>
+      <th>Detail</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th colspan="1">&nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.date %></td>
+        <td><%= task.price %></td>
+        <td><%= task.detail %></td>
+        <td><%= task.location %></td>
+        <td><%= task.task_status %></td>
+        <td><%= link_to "TAG˚", accept_available_task_path([:id] => task[:id]), method: :patch, data: { confirm: "Accept this TAG ?" }%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+<% if user_signed_in? %>
+  <%= link_to 'New Task', new_task_path %>
+<% end %>
+<hr>
+
+<!-- Start Google Map  -->
+<div id="map"></div>
+<script>
+function initialize() {
+
+    var tasks = [<%= raw @tasks.to_json %>][0]; // enclosing elements?
+
+    window.map = new google.maps.Map(document.getElementById('map'), {
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        zoom: 11
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+    var bounds = new google.maps.LatLngBounds();
+
+    for (i = 0; i < tasks.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(tasks[i].lat, tasks[i].lon),
+            title: tasks[i].title,
+            map: map
+        });
+
+        bounds.extend(marker.position);
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+              // setContent via tag varrible
+              // Title -> info show page link  |  TAG˚ link added
+                  // back-ticks for javascript ` then ${works[i].cause_yeah} `
+                var tag = (`<a href="/tasks/${tasks[i].id}">${tasks[i].title}</a> | <a rel="nofollow" data-confirm="Accept this TAG ?" data-method="patch" href="/accept_available_task?id=${tasks[i].id}">TAG˚</a>`);
+
+                infowindow.setContent(tag);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+
+    map.fitBounds(bounds);
+}
+
+function loadScript() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' + 'callback=initialize';
+    document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+</script>
+<!-- Stop Google Map  -->
+<br><hr><hr>

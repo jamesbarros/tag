@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @task.title %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @task.date %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @task.price %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @task.detail %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @task.location %>
+</p>
+
+<p>
+  <strong>Created By:</strong>
+  <%= @task.user.name %>
+</p>
+
+<p>
+  <strong>e-mail:</strong>
+  <%= @task.user.email %>
+</p>
+<p>
+  <strong>Status: </strong>
+  <%= @task.task_status %>
+</p>
+
+<% if @task.user_id == current_user.id %>
+  <%= link_to 'Edit', edit_task_path(@task) %> |
+  <%= link_to 'Back', my_task_path %>
+<% else %>
+  <%= link_to 'Back', my_accepted_task_path %>
+<% end %>
