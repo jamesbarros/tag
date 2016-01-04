@@ -37,3 +37,14 @@ body {
     border: .5px solid navy;
     margin: 0 auto; // center
   }
+
+
+  /* line 7, bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/_panels.scss */
+  .panel {
+    margin-bottom: 20px;
+    background-color: #fbfbfb; // overiding pure white in form panels
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  }
