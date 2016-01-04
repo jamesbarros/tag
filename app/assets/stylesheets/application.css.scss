@@ -14,6 +14,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap/theme';
+@import "nav.css.scss";
 
 .alert-alert {
   @extend .alert-warning;
@@ -23,7 +24,13 @@
   @extend .alert-info;
 }
 
-// google-map window details, required to render map in div 
+
+body {
+        background-image: url(bg1.jpg);
+}
+
+
+// google-map window details, required to render map in div
 #map {
     width: 640px;
     height: 480px;
