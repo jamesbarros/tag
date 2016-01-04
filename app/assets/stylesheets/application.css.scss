@@ -23,6 +23,7 @@
   @extend .alert-info;
 }
 
+// google-map window details, required to render map in div 
 #map {
     width: 640px;
     height: 480px;

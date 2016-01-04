@@ -1,4 +1,5 @@
-
+// google maps javascript will move here in v.2
+// Sample from docs, framework_placement validation
 // function initMap() {
 //   var myLatLon = {lat: 34.0837344, lng: -118.3224372};
 //

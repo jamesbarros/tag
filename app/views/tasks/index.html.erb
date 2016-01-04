@@ -59,17 +59,12 @@ function initialize() {
         });
 
         bounds.extend(marker.position);
-  // Is this the click response..should all markers already list info so the click goes to info page?
         google.maps.event.addListener(marker, 'click', (function (marker, i) {
             return function () {
-                  //  var tag = tasks[i].price; // rig the varrible object for setContent
-                  //  tag = tasks[i].title;
-                  //  var tag = tasks[i].title + "  " + tasks[i].price;
-                  // var tag = (`<strong>${tasks[i].title}</strong> | ${tasks[i].price}`);
-                  // var tag = (`<a href="/tasks/${tasks[i].id}">${tasks[i].title}</a> | ${tasks[i].price}`); // let price be asked for go for tag on filterd results for now
-              // step prior to filtered results and TAG˚ link added
+              // setContent via tag varrible
+              // Title -> info show page link  |  TAG˚ link added
+                  // back-ticks for javascript ` then ${works[i].cause_yeah} `
                 var tag = (`<a href="/tasks/${tasks[i].id}">${tasks[i].title}</a> | <a rel="nofollow" data-confirm="Accept this TAG ?" data-method="patch" href="/accept_available_task?id=${tasks[i].id}">TAG˚</a>`);
-
 
                 infowindow.setContent(tag);
                 infowindow.open(map, marker);
