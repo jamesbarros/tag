@@ -129,6 +129,11 @@ class TasksController < ApplicationController
       # Check that the Task is not owned or currently accepted by current_user
     if @tasks.accepted_by_user_id != @my_id  &&  @tasks.user_id == @my_id
       @tasks.update({ task_status: "Completed" })
+      @tasks.touch(:task_completed_at)
+      # touch a specific datetime_column in rails
+      # http://stackoverflow.com/questions/1091311/touch-updated-at-column-in-rails-2-3-2
+      # model.touch(:column_name)
+
       redirect_to my_task_path, notice: "Confirm, TAG Completed :: ˚Sending Payment˚"
       # payment sent will initiate Stripe payment system
       # responding html, includ JSON later
