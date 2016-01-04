@@ -68,7 +68,9 @@ function initialize() {
                   // var tag = (`<strong>${tasks[i].title}</strong> | ${tasks[i].price}`);
                   // var tag = (`<a href="/tasks/${tasks[i].id}">${tasks[i].title}</a> | ${tasks[i].price}`); // let price be asked for go for tag on filterd results for now
               // step prior to filtered results and TAG˚ link added
-                var tag = (`<a href="/tasks/${tasks[i].id}">${tasks[i].title}</a> | ${tasks[i].price}`);
+                var tag = (`<a href="/tasks/${tasks[i].id}">${tasks[i].title}</a> | <a rel="nofollow" data-confirm="Accept this TAG ?" data-method="patch" href="/accept_available_task?id=${tasks[i].id}">TAG˚</a>`);
+
+
                 infowindow.setContent(tag);
                 infowindow.open(map, marker);
             }
