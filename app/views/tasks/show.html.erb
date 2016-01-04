@@ -32,7 +32,8 @@
 
 <p>
   <strong>e-mail:</strong>
-  <%= @task.user.email %>
+  <%= mail_to @task.user.email %>
+  <!-- <%= @task.user.email %> -->
 </p>
 <p>
   <strong>Status: </strong>
