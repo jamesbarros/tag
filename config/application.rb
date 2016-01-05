@@ -38,7 +38,8 @@ module Demot2
     # Serve assets
     # https://devcenter.heroku.com/articles/rails-4-asset-pipeline
     # enable this if one feels the 12factorgem isn't doing this automagically
-    config.serve_static_assets = true
+    # it merely enables serving everything in the `public` folder and is unrelated to the asset pipeline
+    config.serve_static_files = true
 
     config.assets.compile = true
     # http://stackoverflow.com/questions/18324063/rails-4-images-not-loading-on-heroku
@@ -46,7 +47,6 @@ module Demot2
     # http://stackoverflow.com/questions/19200913/heroku-does-not-serve-background-image-localhost-does
     # config.cache_classes = true
     # config.assets.digest = true
-
 
   end
 end
