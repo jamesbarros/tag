@@ -17,6 +17,7 @@
 @import 'bootstrap/theme';
 @import "nav.scss";
 @import 'bootstrap-datetimepicker';
+//= depend_on_asset "bg1.jpg"
 
 .alert-alert {
   @extend .alert-warning;
@@ -27,8 +28,9 @@
 }
 
 
+// url(bg1.jpg)
 body {
-        background-image: url(bg1.jpg);
+    background-image:url('<%= asset_path("bg1.jpg") %>';
 }
 
 

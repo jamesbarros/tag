@@ -35,5 +35,18 @@ module Demot2
     # config/application.rb : Set Queueing backend:
     config.active_job.queue_adapter = :delayed_job
 
+    # Serve assets
+    # https://devcenter.heroku.com/articles/rails-4-asset-pipeline
+    # enable this if one feels the 12factorgem isn't doing this automagically
+    config.serve_static_assets = true
+
+    config.assets.compile = true
+    # http://stackoverflow.com/questions/18324063/rails-4-images-not-loading-on-heroku
+    #
+    # http://stackoverflow.com/questions/19200913/heroku-does-not-serve-background-image-localhost-does
+    # config.cache_classes = true
+    # config.assets.digest = true
+
+
   end
 end
