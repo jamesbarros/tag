@@ -14,10 +14,15 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
-  <div class="field">
+<!-- Adjusted DateTime Field, now to adjust width of Form_field -->
+  <!-- <div class="field"> -->
+  <div class="datetimepicker">
     <%= f.label :date %><br>
-    <%= f.text_field :date %>
+    <%= f.datetime_select :date %>
+    <!-- <%= f.date_select :date %> -->
+    <!-- <%= f.text_field :date %> -->
   </div>
+
   <div class="field">
     <%= f.label :price %><br>
     <%= f.text_field :price %>
