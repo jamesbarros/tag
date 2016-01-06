@@ -46,7 +46,9 @@ body {
   /* line 7, bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/_panels.scss */
   .panel {
     margin-bottom: 20px;
-    background-color: #fbfbfb; // overiding pure white in form panels
+    color: #3f3f3f;
+    background-color: #f8f8f8; // fbfb -> f3f3 overiding pure white in form panels
+    opacity: 1.0; // full opacity @ 1.0 ---> less opacity @ 0.1
     border: 1px solid transparent;
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -57,3 +59,13 @@ body {
   .input-group {
     width: 13em;
   }
+
+// Not black header text
+.thead-index-header {
+  // padding-bottom: 6px;
+  font-size: .9em;
+  // color: #2f082b;
+    color: #cea6ca;
+    // background-color: #eeeeee;
+    // opacity: 0.5;
+}
