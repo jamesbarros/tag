@@ -1,48 +1,52 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
+    <p>
+      <small><strong>Title:</strong></small>
+      <%= @task.title %>
+    </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @task.date %>
-</p>
+    <p>
+      <small><strong>Date:</strong></small>
+      <%= @task.date %>
+    </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @task.price %>
-</p>
+    <p>
+      <small><strong>Price:</strong></small>
+      <%= @task.price %>
+    </p>
 
-<p>
-  <strong>Detail:</strong>
-  <%= @task.detail %>
-</p>
+    <p>
+      <small><strong>Details:</strong></small>
+      <%= @task.detail %>
+    </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @task.location %>
-</p>
+    <p>
+      <small><strong>Location:</strong></small>
+      <%= @task.location %>
+    </p>
 
-<p>
-  <strong>Created By:</strong>
-  <%= @task.user.name %>
-</p>
+    <p>
+      <!-- <i>Owner: </i> -->
+      <small><strong>Owner:</strong></small>
+      <%= @task.user.name %>
+    </p>
 
-<p>
-  <strong>e-mail:</strong>
-  <%= mail_to @task.user.email %>
-  <!-- <%= @task.user.email %> -->
-</p>
-<p>
-  <strong>Status: </strong>
-  <%= @task.task_status %>
-</p>
+    <% if @task.accepted_by_user_id == current_user.id %>
+      <p>
+        <small><strong>e-mail:</strong></small>
+        <%= mail_to @task.user.email %>
+      </p>
+    <% end %>
 
-<% if @task.user_id == current_user.id %>
-  <%= link_to 'Edit', edit_task_path(@task) %> |
-  <%= link_to 'Back', my_task_path %>
-<% else %>
-  <%= link_to 'Back', my_accepted_task_path %>
-<% end %>
+    <p>
+      <!-- <i>Status:</i> -->
+      <small><strong>Status: </strong></small>
+      <%= @task.task_status %>
+    </p>
+
+    <% if @task.user_id == current_user.id %>
+      <%= link_to 'Edit', edit_task_path(@task) %> |
+      <%= link_to 'Back', my_task_path %>
+    <% else %>
+      <%= link_to 'Back', my_accepted_task_path %>
+    <% end %>
