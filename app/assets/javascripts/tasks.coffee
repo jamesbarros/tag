@@ -3,3 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
   $('.datetimepicker').datetimepicker()
+
+
+  #   format:'d.m.Y H:i',
+  # inline:true,
+
+# $('.datetimepicker').datetimepicker({
+#     format: 'ddd, MMM DD YYYY H:mm a'
+#   });

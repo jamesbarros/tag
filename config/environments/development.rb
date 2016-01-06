@@ -6,6 +6,10 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # remove caching for development environment
+  # http://stackoverflow.com/questions/2462889/ruby-on-rails-clear-a-cached-page
+  config.action_controller.perform_caching = false
+
   # Do not eager load code on boot.
   config.eager_load = false
 
