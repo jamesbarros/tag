@@ -46,11 +46,10 @@
 <script>
 function initialize() {
 
-    // var tasks = [<%= raw @tasks2.to_json.html_safe %>][0]; // works dirty snap
-    var tasks = [<%= raw @tasks2.to_json(only: [:id, :title, :lat, :lon]).html_safe %>][0]; // works dirty snap
+    // var tasks = [<%= raw @tasks2.to_json.html_safe %>][0]; // dirty
+    var tasks = [<%= raw @tasks2.to_json(only: [:id, :title, :lat, :lon]).html_safe %>][0]; // dusty
 
     // var tasks = request tasks_url.json;
-    // var tasks = @tasks2.parseJSON();
 
     window.map = new google.maps.Map(document.getElementById('map'), {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -95,5 +94,6 @@ window.onload = loadScript;
 </script></div>
 <!-- Stop Google Map  -->
 <br><hr><hr>
-<%= @tasks2.to_json(only: [:id, :title, :lat, :lon]) %>
-<hr>
+<!-- debuging json output -->
+<!-- <%= @tasks2.to_json(only: [:id, :title, :lat, :lon]) %>
+<hr> -->
