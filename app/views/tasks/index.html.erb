@@ -46,10 +46,8 @@
 <script>
 function initialize() {
 
-    // var tasks = [<%= raw @tasks2.to_json.html_safe %>][0]; // dirty
-    var tasks = [<%= raw @tasks2.to_json(only: [:id, :title, :lat, :lon]).html_safe %>][0]; // dusty
 
-    // var tasks = request tasks_url.json;
+    var tasks = [<%= raw @tasks2.to_json(only: [:id, :title, :lat, :lon]).html_safe %>][0]; // dusty
 
     window.map = new google.maps.Map(document.getElementById('map'), {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
