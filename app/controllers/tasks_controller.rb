@@ -15,9 +15,11 @@ class TasksController < ApplicationController
       # Set default field of accepted_by_user_id to 0 within task.rb via after_initialize
       # @tasks = Task.where("user_id != ? AND task_status = ? AND accepted_by_user_id = ?", @my_id, "Available", 0)
       @tasks = Task.where("user_id != ? AND task_status = ? AND accepted_by_user_id = ?", @my_id, "Available", 0)
+      @tasks2 = @tasks
     else
       # All Available task including my tasks : user_signed_in?(false) => index display
       @tasks = Task.where(task_status: "Available")
+      @tasks2 = @tasks
     end
   end
 

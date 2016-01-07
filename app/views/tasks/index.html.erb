@@ -39,11 +39,18 @@
 <hr>
 
 <!-- Start Google Map  -->
+
+
+
 <div id="map"></div>
 <script>
 function initialize() {
 
-    var tasks = [<%= raw @tasks.to_json %>][0]; // enclosing elements?
+    // var tasks = [<%= raw @tasks2.to_json.html_safe %>][0]; // works dirty snap
+    var tasks = [<%= raw @tasks2.to_json(only: [:id, :title, :lat, :lon]).html_safe %>][0]; // works dirty snap
+
+    // var tasks = request tasks_url.json;
+    // var tasks = @tasks2.parseJSON();
 
     window.map = new google.maps.Map(document.getElementById('map'), {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -85,6 +92,8 @@ function loadScript() {
 }
 
 window.onload = loadScript;
-</script>
+</script></div>
 <!-- Stop Google Map  -->
 <br><hr><hr>
+<%= @tasks2.to_json(only: [:id, :title, :lat, :lon]) %>
+<hr>
