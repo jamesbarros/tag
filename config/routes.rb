@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   get '/my_accepted_task', to: 'tasks#my_accepted_task', as: :my_accepted_task
   get '/secret', to: 'pages#secret', as: :secret
   get '/about', to: 'pages#about', as: :about
-  get '/terms', to: 'pages#terms', as: :terms
-  get '/faq', to: 'pages#faq', as: :faq
+  get '/terms_and_policy', to: 'pages#terms_and_policy', as: :terms
+  get '/contact', to: 'pages#contact', as: :contact
 
 
 end
