@@ -12,6 +12,10 @@
  *
  */
  // import bootstrap-sprokets before bootstrap if using bootstrap >= 3.2
+
+$brand-primary: #505b7d;
+
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap/theme';
@@ -31,7 +35,35 @@
 // url(bg1.jpg)
 body {
     background-image:url('<%= asset_path("bg1.jpg") %>');
+    // padding-top: 0px;
+    // padding-bottom: 0px;
+    /* Margin bottom by footer height */
+    margin-bottom: 30px;
+
 }
+
+// * Sticky footer styles
+// -------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: #581c41;
+  // font-size: .9em;
+  // color: #d3bdcd;
+  color: #a87b97;
+}
+.color-bottom-links{
+    color: #8a607a;
+}
+
+
 
 
 // google-map window details, required to render map in div
