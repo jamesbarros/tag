@@ -1,5 +1,9 @@
 class Task < ActiveRecord::Base
   belongs_to :user
+  #validates :price, :presence => true
+
+
+
   # after_initialize do
   #   if new_record?
   #     :init
