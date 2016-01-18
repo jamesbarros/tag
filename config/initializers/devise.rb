@@ -239,6 +239,12 @@ Devise.setup do |config|
   # config.omniauth :facebook, 'APP_ID', 'APP_SECRET', scope: 'email', info_fields: 'email, name'
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: 'email', info_fields: 'email, name'
 
+  # Production use, TEST --> LIVE  & DEV --> PRODUCTION
+  config.omniauth :stripe_connect,
+        ENV['STRIPE_CONNECT_DEV_CLIENT_ID'],
+        ENV['STRIPE_TEST_SECRET_KEY'],
+        :scope => 'read_write',
+        :stripe_landing => 'login'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
