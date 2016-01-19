@@ -244,7 +244,8 @@ Devise.setup do |config|
         ENV['STRIPE_CONNECT_DEV_CLIENT_ID'],
         ENV['STRIPE_TEST_SECRET_KEY'],
         :scope => 'read_write',
-        :stripe_landing => 'login'
+        :stripe_landing => 'login',
+        :response_type => 'code'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
