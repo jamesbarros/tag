@@ -2,7 +2,8 @@
   <div class="footer">
       <div class="container" >
         <div class="row">
-          <div class="col-sm-3"></div>
+          <div class="col-sm-3">
+            <%= link_to "Connect with Stripe", user_omniauth_authorize_path(:stripe_connect) %></div>
           <div class="col-sm-6">
               <%= link_to "About",   about_path, class: 'color-bottom-links' %>&nbsp;&nbsp;<small>|</small>&nbsp;&nbsp;<%= link_to "Terms of Service", terms_path, class: 'color-bottom-links' %>&nbsp;&nbsp;<small>|</small>&nbsp;&nbsp;<%= link_to "Contact", contact_path, class: 'color-bottom-links' %> </div>
           <div class="col-sm-3">
