@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :omniauthable, :omniauth_providers => [:facebook]
+         :confirmable, :lockable, :omniauthable, :omniauth_providers => [:facebook, :stripe_connect]
 
          # models/user.rb : overide Devise' method in model
            # deliver_later sending will be qued up
