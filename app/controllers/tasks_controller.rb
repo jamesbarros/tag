@@ -136,7 +136,7 @@ class TasksController < ApplicationController
       # http://stackoverflow.com/questions/1091311/touch-updated-at-column-in-rails-2-3-2
       # model.touch(:column_name)
 
-      redirect_to my_task_path, notice: "Confirm, TAG Completed :: ˚Sending Payment˚"
+      redirect_to my_task_path, notice: "Confirm, TAG Completed :: Sending Payment"
       # payment sent will initiate Stripe payment system
       # responding html, includ JSON later
     else
