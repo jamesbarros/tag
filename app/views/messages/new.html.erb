@@ -1,9 +1,8 @@
-<hr><hr><br><h3><em><i><center>Messages</center></i></em></h3>
-<hr><br>
+
 <div class="contact_container">
   <div id="contact" >
     <h3>TAG You're it</h3>
-    <h4><center><em>We're happy to hear from you</em></center></h4>
+    <h4><center>We're happy to hear from you</center></h4>
 <%= form_for @message do |f| %>
   <% if @message.errors.any? %>
     <div id="error_explanation">
@@ -26,7 +25,7 @@
 
   <div class="field"><fieldset>
     <!-- <%= f.label :email %> -->
-    <%= f.email_field(:email, placeholder: "e-mail", tabindex: "2", type: "email", required: true)  %></fieldset>
+    <%= f.email_field(:email, placeholder: "Email", tabindex: "2", type: "email", required: true)  %></fieldset>
   </div>
 
   <div class="field"><fieldset>

@@ -1,7 +1,14 @@
 // Place all the styles related to the messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+
+@import url(https://fonts.googleapis.com/css?family=Poiret+One|Source+Sans+Pro:400,300,300italic|Abel|Fira+Sans:400,300);
+
+// font-family: 'Source Sans Pro', sans-serif;
+// font-family: 'Abel', sans-serif;
+// font-family: 'Fira Sans', sans-serif;
+// font-family: 'Poiret One', cursive;
+
 
 * {
 	margin:0;
@@ -17,22 +24,25 @@
 }
 
 cu_body {
-	font-family:"Open Sans", Helvetica, Arial, sans-serif;
+	font-family:"Fira Sans", Helvetica, Arial, sans-serif;
 	font-weight:300;
-	font-size: 12px;
+	font-size: 13px;
 	line-height:30px;
+	// color:#bdcbd3;
 	color:#777;
+
 	// background:#0CF;
 }
 
 .contact_container {
+	font-family:'Abel', Helvetica, Arial, sans-serif;
 	max-width:400px;
 	width:100%;
 	margin:0 auto;
 	position:relative;
 }
 
-#contact input[type="text"], #contact input[type="email"], #contact input[type="subject"], #contact textarea, #contact button[type="submit"] { font:400 12px/16px "Open Sans", Helvetica, Arial, sans-serif; }
+#contact input[type="text"], #contact input[type="email"], #contact input[type="subject"], #contact textarea, #contact button[type="submit"] { font:400 13px/16px 'Source Sans Pro', serif, Helvetica, Arial, sans-serif; }
 
 #contact {
 	background:#F9F9F9;
@@ -41,16 +51,21 @@ cu_body {
 }
 
 #contact h3 {
-	color: #F96;
+	font-family: 'Abel', Helvetica, Arial, sans-serif;
+	color: #66a2c7;
+	// color: #D3BDCB;
+	// color: #F96;
 	display: block;
-	font-size: 30px;
+	font-size: 33px;
 	font-weight: 400;
 }
 
 #contact h4 {
+	font-family: 'Poiret One', cursive, 'Source Sans Pro', Helvetica, Arial, sans-serif;
+	// font-weight:300;
 	margin:5px 0 15px;
 	display:block;
-	font-size:13px;
+	font-size:14px;
 }
 
 fieldset {
@@ -86,7 +101,10 @@ fieldset {
 	cursor:pointer;
 	width:100%;
 	border:none;
-	background:#0CF;
+	background: #FFA7DF;
+	// background: #bdcbd3;
+	// background:#0CF;
+	// color:#bdcbd3;
 	color:#FFF;
 	margin:0 0 5px;
 	padding:10px;
@@ -94,7 +112,8 @@ fieldset {
 }
 
 #contact button[type="submit"]:hover {
-	background:#09C;
+	background: #c766a2;
+	// background:#09C;
 	-webkit-transition:background 0.3s ease-in-out;
 	-moz-transition:background 0.3s ease-in-out;
 	transition:background-color 0.3s ease-in-out;
