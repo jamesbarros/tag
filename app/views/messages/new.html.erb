@@ -3,7 +3,7 @@
 <div class="contact_container">
   <div id="contact" >
     <h3>TAG You're it</h3>
-    <h4>We're happy to hear from you, fill your details below</h4>
+    <h4><center><em>We're happy to hear from you</em></center></h4>
 <%= form_for @message do |f| %>
   <% if @message.errors.any? %>
     <div id="error_explanation">
@@ -38,7 +38,9 @@
     <!-- <%= f.label :content %> -->
     <%= f.text_area(:content, placeholder: "Message...", tabindex: "4", required: true)  %></fieldset>
   </div>
-
+<!-- Both buttons seem to work -->
+<!-- We want to style the f.submit or combine the two actions so proper structure is in use -->
+<!-- I was failling to style f.submit but before stopping the test of ref buttong worked. -->
   <div class="actions"><fieldset>
     <%= f.submit(:submit, class: 'button', name: "submit", id: "contact-submit", type: "submit")%></fieldset>
   </div>
