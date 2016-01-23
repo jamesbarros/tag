@@ -38,13 +38,11 @@
     <!-- <%= f.label :content %> -->
     <%= f.text_area(:content, placeholder: "Message...", tabindex: "4", required: true)  %></fieldset>
   </div>
-<!-- Both buttons seem to work -->
-<!-- We want to style the f.submit or combine the two actions so proper structure is in use -->
-<!-- I was failling to style f.submit but before stopping the test of ref buttong worked. -->
-  <div class="actions"><fieldset>
-    <%= f.submit(:submit, class: 'button', name: "submit", id: "contact-submit", type: "submit")%></fieldset>
+  <div><fieldset>
+    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
   </div>
-  <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+
 <% end %>
 </div>
 </div></div>
