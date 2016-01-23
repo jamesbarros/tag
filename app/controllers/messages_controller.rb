@@ -7,9 +7,9 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
 
-    if @message.valid?
-      MessageMailer.message_me(@message).deliver_now # we deliver_later for delayed_jobs
-      redirect_to new_message_path, notice: "Message sent, thanks"
+    if @message.valid? # added delay prior message_me() to tie in delayed_jobs
+      MessageMailer.delay.message_me(@message)#.deliver_now # remove delay to uncomment deliver_now
+      redirect_to new_message_path, notice: "Your message has been sent, thanks you."
     else
       render :new
     end
