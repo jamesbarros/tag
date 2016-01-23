@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :messages, only: [:new, :create] # route for messages to post/get
+
   resources :tasks
   devise_for :users, :controllers => { omniauth_callbacks: 'callbacks', registrations: 'registrations' }
   # root to: 'pages#index'
