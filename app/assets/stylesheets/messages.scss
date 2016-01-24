@@ -2,13 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// css & from base ref by ssbalakumar @ http://codepen.io/ssbalakumar/pen/uzDIA
+// pastel -ish inviting color pallete in regards to inviting communication
+// TODO on v2 pass: reduce saturation, restyle gradlients or less distinsion in transition 
 @import url(https://fonts.googleapis.com/css?family=Poiret+One|Source+Sans+Pro:400,300,300italic|Abel|Fira+Sans:400,300);
-
 // font-family: 'Source Sans Pro', sans-serif;
 // font-family: 'Abel', sans-serif;
 // font-family: 'Fira Sans', sans-serif;
 // font-family: 'Poiret One', cursive;
-
 
 * {
 	margin:0;
@@ -28,10 +29,8 @@ cu_body {
 	font-weight:300;
 	font-size: 13px;
 	line-height:30px;
-	// color:#bdcbd3;
-	color:#777;
-
-	// background:#0CF;
+	color:#bdcbd3;
+	// color:#777;
 }
 
 .contact_container {
@@ -45,16 +44,25 @@ cu_body {
 #contact input[type="text"], #contact input[type="email"], #contact input[type="subject"], #contact textarea, #contact button[type="submit"] { font:400 13px/16px 'Source Sans Pro', serif, Helvetica, Arial, sans-serif; }
 
 #contact {
-	background:#F9F9F9;
+	background:
+// linear-gradient(#acc7dc 0%, #d6dde3 90%), // base ok
+// linear-gradient(to right, #eabdd5 0%, #c2eafd 90%), // base ok
+    linear-gradient(#eabdd5 10%, #d6dde3 40%),
+		linear-gradient(to right, #eabdd5 0%, #E5AFCC 90%),
+    url('image.jpg') 30px, // these have to stay to allow the blend mode to work
+    url('image.jpg') 20px; // these have to stay to allow the blend mode to work
+  background-blend-mode: luminosity; // potential nix revision 2
+	// background:#F9F9F9;
+	opacity: 0.9; // slight connection to background graphic
 	padding:25px;
-	margin:50px 0;
+	margin:60px 0;
 }
 
 #contact h3 {
 	font-family: 'Abel', Helvetica, Arial, sans-serif;
-	color: #66a2c7;
+	// color: #66a2c7;
 	// color: #D3BDCB;
-	// color: #F96;
+	color: #51819F;
 	display: block;
 	font-size: 33px;
 	font-weight: 400;
@@ -63,6 +71,7 @@ cu_body {
 #contact h4 {
 	font-family: 'Poiret One', cursive, 'Source Sans Pro', Helvetica, Arial, sans-serif;
 	// font-weight:300;
+	color: #252525;
 	margin:5px 0 15px;
 	display:block;
 	font-size:14px;
@@ -79,7 +88,8 @@ fieldset {
 #contact input[type="text"], #contact input[type="email"], #contact input[type="subject"], #contact textarea {
 	width:100%;
 	border:1px solid #CCC;
-	background:#FFF;
+	background:  #F9FBFD;
+	// background:#FFF;
 	margin:0 0 5px;
 	padding:10px;
 }
@@ -102,10 +112,12 @@ fieldset {
 	width:100%;
 	border:none;
 	background: #FFA7DF;
+	opacity: 0.9;
 	// background: #bdcbd3;
 	// background:#0CF;
 	// color:#bdcbd3;
 	color:#FFF;
+	// color:  #F9FBFD;
 	margin:0 0 5px;
 	padding:10px;
 	font-size:15px;

@@ -1,7 +1,8 @@
 
 <div class="contact_container">
   <div id="contact" >
-    <h3>TAG You're it</h3>
+    <!-- add one space after h3 tag to give it a natural personal feel, remove for cleaner flatter, clinical feel -->
+    <h3>&nbsp;TAG You're it</h3>
     <h4><center>We're happy to hear from you</center></h4>
 <%= form_for @message do |f| %>
   <% if @message.errors.any? %>
@@ -24,17 +25,14 @@
   </div>
 
   <div class="field"><fieldset>
-    <!-- <%= f.label :email %> -->
     <%= f.email_field(:email, placeholder: "Email", tabindex: "2", type: "email", required: true)  %></fieldset>
   </div>
 
   <div class="field"><fieldset>
-    <!-- <%= f.label :subject %> -->
     <%= f.text_field(:subject, placeholder: "Topic", tabindex: "3", type:"subject", required: true)  %></fieldset>
   </div>
 
   <div class="field"><fieldset>
-    <!-- <%= f.label :content %> -->
     <%= f.text_area(:content, placeholder: "Message...", tabindex: "4", required: true)  %></fieldset>
   </div>
   <div><fieldset>
@@ -43,7 +41,9 @@
   </div>
 
 <% end %>
-</div>
-</div></div>
+<!-- some new divs -->
+</div> <!-- id="error_explanation" -->
+</div> <!-- id="contact" -->
+</div> <!-- class="contact_container" -->
 
 <hr><hr>
