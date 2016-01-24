@@ -5,7 +5,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :omniauthable, :omniauth_providers => [:facebook, :stripe_connect]
+         :confirmable, :lockable, :omniauthable, :omniauth_providers => [:facebook]
+
+         # commenting out :stripe_connect while in integration phrase :# , :stripe_connect
+         # current iteration is promissing step to lanch from
 
          # models/user.rb : overide Devise' method in model
            # deliver_later sending will be qued up
