@@ -1,7 +1,7 @@
 class MessageMailer < ApplicationMailer
   # message_me method
-  # TODO : change this email to teamtaskandgo@gmail.com for Production.ENV 
-  default :to => "bzanth@gmail.com" # change to teamtaskandgo@gmail.com in production used
+  # TODO : change this email to teamtaskandgo@gmail.com for Production.ENV
+  default :to => "teamtaskandgo+ContactUs@gmail.com" # change to teamtaskandgo@gmail.com in production used
 
   # the below default from: is overwritten by gmail smtp use standards.
   default from: "TeamTaskandGo <noreply@taskandgo.com>" # added to test # doesn't work overitten by gmail
