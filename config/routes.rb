@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   #contact us page messages (form, controller, messages_tabless_Model)
   resources :messages, only: [:new, :create] # route for messages to post/get
+  get '/contact', to: 'messages#new', as: :contact
 
   # TAG task for users
   resources :tasks
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
   get '/secret', to: 'pages#secret', as: :secret
   get '/about', to: 'pages#about', as: :about
   get '/terms_and_policy', to: 'pages#terms_and_policy', as: :terms
-  get '/contact', to: 'pages#contact', as: :contact
+  # get '/contact', to: 'pages#contact', as: :contact
 
-  
+
 end

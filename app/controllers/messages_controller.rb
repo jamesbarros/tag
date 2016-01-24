@@ -11,7 +11,8 @@ class MessagesController < ApplicationController
     if @message.valid? && verify_recaptcha(model: @message, timeout: 7)
       # added delay prior message_me() to tie in delayed_jobs
       MessageMailer.delay.message_me(@message)#.deliver_now # remove delay to uncomment deliver_now
-      redirect_to new_message_path, notice: "Your message has been sent, thanks you."
+      # redirect_to new_message_path, notice: "Your message has been sent, thanks you."
+      redirect_to contact_path, notice: "Your message has been sent, thanks you."
     else
       render :new
     end
