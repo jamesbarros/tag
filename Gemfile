@@ -8,6 +8,9 @@ gem 'omniauth-facebook'
 gem 'rails_12factor', group: :production
 gem 'geocoder'
 
+# reCAPTCHA gem for quick use
+gem "recaptcha", require: "recaptcha/rails"
+
 # Lets BootStrap3's DateTimePicker
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
