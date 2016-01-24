@@ -4,7 +4,7 @@
 
 // css & from base ref by ssbalakumar @ http://codepen.io/ssbalakumar/pen/uzDIA
 // pastel -ish inviting color pallete in regards to inviting communication
-// TODO on v2 pass: reduce saturation, restyle gradlients or less distinsion in transition 
+// TODO on v2 pass: reduce saturation, restyle gradlients or less distinsion in transition
 @import url(https://fonts.googleapis.com/css?family=Poiret+One|Source+Sans+Pro:400,300,300italic|Abel|Fira+Sans:400,300);
 // font-family: 'Source Sans Pro', sans-serif;
 // font-family: 'Abel', sans-serif;
@@ -44,9 +44,11 @@ cu_body {
 #contact input[type="text"], #contact input[type="email"], #contact input[type="subject"], #contact textarea, #contact button[type="submit"] { font:400 13px/16px 'Source Sans Pro', serif, Helvetica, Arial, sans-serif; }
 
 #contact {
+	// loved the gradients but the image.jpg aspect isn't in place so it loads slow as it times out in-route
+	// tentative for now
 	background:
-// linear-gradient(#acc7dc 0%, #d6dde3 90%), // base ok
-// linear-gradient(to right, #eabdd5 0%, #c2eafd 90%), // base ok
+linear-gradient(#acc7dc 0%, #d6dde3 90%), // base ok
+linear-gradient(to right, #eabdd5 0%, #c2eafd 90%), // base ok
     linear-gradient(#eabdd5 10%, #d6dde3 40%),
 		linear-gradient(to right, #eabdd5 0%, #E5AFCC 90%),
     url('image.jpg') 30px, // these have to stay to allow the blend mode to work
@@ -69,7 +71,7 @@ cu_body {
 }
 
 #contact h4 {
-	font-family: 'Poiret One', cursive, 'Source Sans Pro', Helvetica, Arial, sans-serif;
+	font-family: 'Poiret One' cursive, 'Source Sans Pro', Helvetica, Arial, sans-serif;
 	// font-weight:300;
 	color: #252525;
 	margin:5px 0 15px;
