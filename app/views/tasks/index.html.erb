@@ -75,10 +75,14 @@ function loadScript() {
     document.body.appendChild(script);
 }
 
-window.onload = loadScript;
+
+$(document).on('ready', loadScript);
+  // apply non-idempotent transformations to the body
+$(document).on('ready page:change', initialize);
+
 </script></div>
-<!-- Stop Google Map  -->
-<br><hr><hr>
-<!-- debuging json output -->
-<!-- <%= @tasks2.to_json(only: [:id, :title, :lat, :lon]) %>
-<hr> -->
+<%# <!-- Stop Google Map  -->
+# <br><hr><hr>
+# <!-- debuging json output -->
+# <!-- <%#= @tasks2.to_json(only: [:id, :title, :lat, :lon]) %>
+<%# <!-- <hr> --> #%>
