@@ -18,7 +18,7 @@ Bootstrap & Sass are used for quick styling
 
 TAG's [task and go](http://taskandgo.herokuapp.com) demo on heroku has 80% of it's functionality enabled. facebook OAuth is by invitation, please use the Sign-Up form.
 
-A composition change can be seen on TAG's  [Contact](http://taskandgo.herokuapp.com) page. It utilizes a tabel-less model, pastel palette change, adjustments in fonts, and google's reCAPTCHA api for a clean spam-free communication.
+A composition change can be seen on TAG's  [Contact](http://taskandgo.herokuapp.com/contact) page. It utilizes a tabel-less model, pastel palette change, adjustments in fonts, and google's reCAPTCHA api for a clean spam-free communication.
 
 Note, please read the authored docs for proper gem integration.
 - pg
