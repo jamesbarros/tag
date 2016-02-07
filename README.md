@@ -31,7 +31,7 @@ Note, please read the authored docs for proper gem integration.
 - delayed_job_active_record
 - omniauth-facebook
 - bootstrap3-datetimepicker-rails
-- - momentjs-rails
+- momentjs-rails
 
 TODO
 - stripe connect transaction and verification
