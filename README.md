@@ -49,6 +49,7 @@ reCAPTCHA  :
 Gmail :
 - #config/environments/development.rb
 - #config/environments/production.rb
+- #config/initializers/devise.rb
 -  ENV['GMAIL_USERNAME']
 -  ENV['GMAIL_PASSWORD']
 -  smtp & host specifics for your use
