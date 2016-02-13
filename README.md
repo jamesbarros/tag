@@ -37,3 +37,23 @@ TODO
 - stripe connect transaction and verification
 - push notification between TAG clients
 - testing and refactoring
+
+
+*set these ENV attributes for personal use*
+
+reCAPTCHA  :
+- #config/initializers/recaptcha.rb
+- ENV['RECAPTCHA_PUBLIC_KEY']
+- ENV['RECAPTCHA_PRIVATE_KEY']
+
+gmail :
+- #config/environments/development.rb
+- #config/environments/production.rb
+-  ENV['GMAIL_USERNAME']
+-  ENV['GMAIL_PASSWORD']
+-  smtp & host specifics for your use
+
+facebook :
+- #config/initializers/devise.rb
+- ENV['FACEBOOK_APP_ID']
+- ENV['FACEBOOK_APP_SECRET']
