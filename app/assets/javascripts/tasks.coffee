@@ -4,9 +4,9 @@
 $(document).ready ->
   $('.datetimepicker').datetimepicker()
 
-
-  #   format:'d.m.Y H:i',
-  # inline:true,
+# format date config options 
+#   format:'d.m.Y H:i',
+# inline:true,
 
 # $('.datetimepicker').datetimepicker({
 #     format: 'ddd, MMM DD YYYY H:mm a'

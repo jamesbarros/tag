@@ -5,7 +5,8 @@ class MessageMailer < ApplicationMailer
 
   # the below default from: is overwritten by gmail smtp use standards.
   default from: "TeamTaskandGo <noreply@taskandgo.com>" # added to test # doesn't work overitten by gmail
-  # TODO : incorporate a working layout for emails sent to site_email Layout below fails
+  # TODO : incorporate a working layout for emails sent to site_email
+  # as Layout below fails
   # layout 'message_me' # not showing up yet as spec'd in docs
 
   # message_me method : We tie plain:text all data within

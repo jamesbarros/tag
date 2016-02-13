@@ -48,5 +48,8 @@ module Demot2
     # config.cache_classes = true
     # config.assets.digest = true
 
+    # about removing auto generated helpers
+    # https://ernie.io/2015/06/16/rails-application-rb-recommendations/
+
   end
 end
