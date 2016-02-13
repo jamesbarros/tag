@@ -39,21 +39,21 @@ TODO
 - testing and refactoring
 
 
-*set these ENV attributes for personal use*
+*set these ENV attributes*
 
 reCAPTCHA  :
 - #config/initializers/recaptcha.rb
 - ENV['RECAPTCHA_PUBLIC_KEY']
 - ENV['RECAPTCHA_PRIVATE_KEY']
 
-gmail :
+Gmail :
 - #config/environments/development.rb
 - #config/environments/production.rb
 -  ENV['GMAIL_USERNAME']
 -  ENV['GMAIL_PASSWORD']
 -  smtp & host specifics for your use
 
-facebook :
+Facebook :
 - #config/initializers/devise.rb
 - ENV['FACEBOOK_APP_ID']
 - ENV['FACEBOOK_APP_SECRET']
