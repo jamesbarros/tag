@@ -2,7 +2,7 @@
 # TAG  You're It
 ##### _Simplifying life for individuals and businesses_
 
-### TAG is a conceptual PASS application
+### TAG is a conceptual PaaS application
 
 TAG's platform allows registered users to post tasks in which other users can view and accept. At the same time, TAG allows users to generate income by accomplishing these tasks.
 
