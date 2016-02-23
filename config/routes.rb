@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   #contact us page messages (form, controller, messages_tabless_Model)
   resources :messages, only: [:new, :create] # route for messages to post/get
   get '/contact', to: 'messages#new', as: :contact
-  # remove old contact page after client sign-off of new version
-  # get '/contact', to: 'pages#contact', as: :contact # static page with mailto:
 
   # TAG task for users
   resources :tasks
@@ -22,8 +20,7 @@ Rails.application.routes.draw do
   get '/my_task', to: 'tasks#my_task', as: :my_task
   get '/my_accepted_task', to: 'tasks#my_accepted_task', as: :my_accepted_task
 
-  # Static pages & secret debug page
-  get '/secret', to: 'pages#secret', as: :secret
+  # Static pages
   get '/about', to: 'pages#about', as: :about
   get '/terms_and_policy', to: 'pages#terms_and_policy', as: :terms
 

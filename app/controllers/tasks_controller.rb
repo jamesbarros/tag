@@ -23,21 +23,20 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
+
   def show
       @my_id = current_user.id
       # accept_available_task logic may move into show pages
   end
 
-  # GET /tasks/new
+
   def new
     @my_task_status_options = { available: "Available", unlist: "Unlisted" }
     @task = current_user.tasks.build # Task.new
 
   end
 
-  # GET /tasks/1/edit
+
   def edit
       @task = Task.find(params[:id])
 
@@ -54,8 +53,7 @@ class TasksController < ApplicationController
 
   end
 
-  # POST /tasks
-  # POST /tasks.json
+
   def create
     @task = current_user.tasks.build(task_params)  # Task.new(task_params)
 
